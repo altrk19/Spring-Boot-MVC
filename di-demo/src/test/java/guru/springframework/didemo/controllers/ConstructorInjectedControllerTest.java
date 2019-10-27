@@ -8,14 +8,16 @@ import org.junit.Test;
 public class ConstructorInjectedControllerTest {
     private ConstructorInjectedController constructorInjectedController;
 
-    @Before public void setup() {
+    @Before
+    public void setup() {
         this.constructorInjectedController =
-            new ConstructorInjectedController(new GreetingServiceImpl());
+                new ConstructorInjectedController(new GreetingServiceImpl());
 
     }
 
-    @Test public void testGreeting() {
+    @Test
+    public void testGreeting() {
         Assert.assertEquals(GreetingServiceImpl.HELLO_GURUS,
-            constructorInjectedController.sayHello());
+                constructorInjectedController.sayHello());
     }
 }

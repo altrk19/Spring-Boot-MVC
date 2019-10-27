@@ -1,8 +1,8 @@
-package guru.springframework.didemo.controllers;
+package guru.springframework.didemo2.controllers;
 
-        import guru.springframework.didemo.services.GreetingService;
-        import org.springframework.beans.factory.annotation.Qualifier;
-        import org.springframework.stereotype.Controller;
+import guru.springframework.didemo2.services.GreetingService;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 
 @Controller
 public class ConstructorInjectedController {
