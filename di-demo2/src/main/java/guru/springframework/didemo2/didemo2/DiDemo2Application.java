@@ -11,8 +11,6 @@ import org.springframework.context.ApplicationContext;
 public class DiDemo2Application {
 
     public static void main(String[] args) {
-        System.out.println("hello");
-
         ApplicationContext ctx = SpringApplication.run(DiDemo2Application.class, args);
         MyController myController = (MyController) ctx.getBean("myController");
 
