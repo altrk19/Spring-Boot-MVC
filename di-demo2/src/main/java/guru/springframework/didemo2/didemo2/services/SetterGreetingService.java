@@ -1,11 +1,12 @@
-package guru.springframework.didemo2.services;
+package guru.springframework.didemo2.didemo2.services;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class SetterGreetingService implements GreetingService {
+
     @Override
     public String sayGreeting() {
-        return "Hello - I was injected via setter";
+        return "Hello - I was injected by the getter";
     }
 }
