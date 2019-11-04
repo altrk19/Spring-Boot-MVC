@@ -1,5 +1,14 @@
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\OwnerService.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\Owner.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\CrudService.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\map\AbstractMapService.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\Vet.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\Pet.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\PetType.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\Person.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\BaseEntity.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\map\VetServiceMap.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\map\PetServiceMap.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\VetService.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\map\OwnerServiceMap.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\PetService.java
