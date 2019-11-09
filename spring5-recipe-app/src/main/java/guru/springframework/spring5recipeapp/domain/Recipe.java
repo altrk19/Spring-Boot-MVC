@@ -3,8 +3,7 @@ package guru.springframework.spring5recipeapp.domain;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-public class Recipe {
+@Entity public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +25,15 @@ public class Recipe {
 
     @OneToOne(cascade = CascadeType.ALL)    //if we delete recipe, we want to delete notes too
     private Notes notes;
+
+    @Enumerated(value = EnumType.STRING)    //default behave is ORDINAL, it saves the number of enum to database
+    private Difficulty difficulty;
+
+    @ManyToMany
+    @JoinTable(name = "recipe_category",
+        joinColumns = @JoinColumn(name = "recipe_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
     public Long getId() {
         return id;
@@ -113,5 +121,21 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
