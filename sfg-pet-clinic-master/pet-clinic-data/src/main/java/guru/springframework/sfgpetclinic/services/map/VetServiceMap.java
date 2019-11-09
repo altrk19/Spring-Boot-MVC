@@ -1,6 +1,8 @@
 package guru.springframework.sfgpetclinic.services.map;
 
+import guru.springframework.sfgpetclinic.model.Speciality;
 import guru.springframework.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.services.SpecialityService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,12 @@ import java.util.Set;
 
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
+    private SpecialityService specialityService;
+
+    public VetServiceMap(SpecialityService specialityService) {
+        this.specialityService = specialityService;
+    }
+
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
@@ -20,6 +28,20 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(Vet vet) {
+
+        //Goal : speciality.setId  //Thats why save method used but overrided(because used Set Collection)
+        if (vet != null) {
+            if (vet.getSpecialities() != null) {
+                vet.getSpecialities().forEach(speciality -> {
+                    if (speciality.getId() == null) {
+                        Speciality savedSpeciality = specialityService.save(speciality);
+                        speciality.setId(savedSpeciality.getId());
+                    }
+                });
+            }else{
+                System.out.println("Vet doesnt have speciality");
+            }
+        }
         return super.save(vet);
     }
 
