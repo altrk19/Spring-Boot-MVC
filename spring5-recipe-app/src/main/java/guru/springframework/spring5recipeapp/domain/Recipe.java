@@ -1,6 +1,7 @@
 package guru.springframework.spring5recipeapp.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity public class Recipe {
@@ -15,10 +16,12 @@ import java.util.Set;
     private Integer servings;
     private String source;
     private String url;
+
+    @Lob
     private String directions;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     @Lob         //image length can be large       //blob:binary lob
     private Byte[] image;
@@ -33,7 +36,7 @@ import java.util.Set;
     @JoinTable(name = "recipe_category",
         joinColumns = @JoinColumn(name = "recipe_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -41,6 +44,26 @@ import java.util.Set;
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Recipe() {
+    }
+
+    public Recipe(String description, Integer prepTime, Integer cookTime, Integer servings,
+        String source, String url, String directions, Set<Ingredient> ingredients, Byte[] image,
+        Notes notes, Difficulty difficulty, Set<Category> categories) {
+        this.description = description;
+        this.prepTime = prepTime;
+        this.cookTime = cookTime;
+        this.servings = servings;
+        this.source = source;
+        this.url = url;
+        this.directions = directions;
+        this.ingredients = ingredients;
+        this.image = image;
+        this.notes = notes;
+        this.difficulty = difficulty;
+        this.categories = categories;
     }
 
     public String getDescription() {
