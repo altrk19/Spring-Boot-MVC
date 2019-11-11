@@ -12,14 +12,14 @@ import java.util.Set;
 
 @Service
 //@Primary
-public class OwnerServiceMap extends AbstractMapService<Owner, Long>
+public class OwnerMapService extends AbstractMapService<Owner, Long>
         implements OwnerService {
 
 
     private PetTypeService petTypeService;
     private PetService petService;
 
-    public OwnerServiceMap(PetTypeService petTypeService, PetService petService) {
+    public OwnerMapService(PetTypeService petTypeService, PetService petService) {
         this.petTypeService = petTypeService;
         this.petService = petService;
     }
