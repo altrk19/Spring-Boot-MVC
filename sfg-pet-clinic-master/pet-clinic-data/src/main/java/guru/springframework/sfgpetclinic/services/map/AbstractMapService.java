@@ -45,3 +45,8 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
         return nextId;
     }
 }
+
+
+//Notes:
+//Şuan projede 2 farklı service konfigürasyonu var . 1)abstractmapservice:crud service'teki metotları override ederek kendimiz yazdık
+//2)spring data jpa crudrepository: jpa'nın kendi metotlarını kullandık.Herhangi bir override yok.
