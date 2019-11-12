@@ -9,3 +9,5 @@ public interface CrudService<T, ID> {
     void delete(T object);
     void deleteById(ID id);
 }
+//Note:
+//Bizim yazdıgımız crud interface'i. h2'ye kaydetme veya okuma işlemi yapılmıyor. db yerine veriler map'den okunuyor map'e yazılıyor.
