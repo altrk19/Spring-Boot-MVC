@@ -19,12 +19,15 @@ D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\repositories\PetTypeRepository.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\repositories\VisitRepository.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\CrudService.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\springdatajpa\VisitSDJpaService.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\VisitService.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\repositories\SpecialityRepository.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\map\PetMapService.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\Pet.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\PetType.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\Person.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\BaseEntity.java
+D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\map\VisitMapService.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\model\Speciality.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\services\PetService.java
 D:\Users\aturk\Desktop\Vagrant\projects\spring\sfg-pet-clinic-master\pet-clinic-data\src\main\java\guru\springframework\sfgpetclinic\repositories\VetRepository.java
