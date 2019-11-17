@@ -26,3 +26,9 @@ public class RecipeServiceImpl implements RecipeService {
         return recipes;
     }
 }
+
+
+//Flow
+//Service -> Repository -> DB
+
+//Program ayaga kalktıgında  RecipeBootstrap sınıfı ile db'ye datalar kaydediliyor.
