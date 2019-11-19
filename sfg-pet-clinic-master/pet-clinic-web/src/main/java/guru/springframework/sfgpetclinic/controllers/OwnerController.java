@@ -21,7 +21,7 @@ public class OwnerController {
     }
 
     @RequestMapping("/find")
-    public String oops() {
+    public String findOwners() {
         return "notimplemented";
     }
 }
