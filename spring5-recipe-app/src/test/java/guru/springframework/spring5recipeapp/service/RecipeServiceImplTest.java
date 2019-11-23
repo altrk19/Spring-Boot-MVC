@@ -8,9 +8,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 class RecipeServiceImplTest {
@@ -42,5 +44,21 @@ class RecipeServiceImplTest {
 
         verify(recipeRepository,times(2)).findAll();
         //how many times used findAll method , if is it 2 result true
+    }
+
+    @Test
+    void getRecipeByIdTest(){
+        Long id = 1L;
+        Recipe recipe = new Recipe();
+        recipe.setId(id);
+
+        Optional<Recipe> recipeOptional= Optional.of(recipe);
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe returnedRecipe = recipeService.getRecipeById(id);
+
+        assertNotNull(returnedRecipe);
+        verify(recipeRepository,times(1)).findById(anyLong());
+
     }
 }
