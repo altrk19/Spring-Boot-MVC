@@ -71,19 +71,33 @@ public class IngredientServiceImpl implements IngredientService {
                 ingredient.setDescription(command.getDescription());
                 ingredient.setAmount(command.getAmount());
                 ingredient.setUom(unitOfMeasureRepository.findById(command.getUom().getId())
-                        .orElseThrow(()->new RuntimeException("uom not found")));
+                        .orElseThrow(() -> new RuntimeException("uom not found")));
 
-            }else {
+            } else {
                 //add new Ingredient
-                recipe.getIngredients().add(ingredientCommandToIngredient.convert(command));
+                Ingredient ingredient = ingredientCommandToIngredient.convert(command);
+                ingredient.setRecipe(recipe);
+                recipe.getIngredients().add(ingredient);
             }
 
             Recipe savedRecipe = recipeRepository.save(recipe);
             //to do check for fail
-            Optional<Ingredient> ingredientOptional = savedRecipe.getIngredients().stream()
+            Optional<Ingredient> savedIngredientOptional = savedRecipe.getIngredients().stream()
                     .filter(recipeIngredients -> recipeIngredients.getId().equals(command.getId()))
                     .findFirst();
-            return ingredientOptional.map(ingredientToIngredientCommand::convert).orElse(null);
+            //return ingredientOptional.map(ingredientToIngredientCommand::convert).orElse(null);
+            //check by description
+            if (!savedIngredientOptional.isPresent()) {
+                //not totally safe... But best guess
+                savedIngredientOptional = savedRecipe.getIngredients().stream()
+                        .filter(recipeIngredients -> recipeIngredients.getDescription().equals(command.getDescription()))
+                        .filter(recipeIngredients -> recipeIngredients.getAmount().equals(command.getAmount()))
+                        .filter(recipeIngredients -> recipeIngredients.getUom().getId().equals(command.getUom().getId()))
+                        .findFirst();
+            }
+            //to do check for fail
+            return savedIngredientOptional.map(ingredientToIngredientCommand::convert).orElse(null);
+            //return ingredientToIngredientCommand.convert(savedIngredientOptional.get());
         }
     }
 }
