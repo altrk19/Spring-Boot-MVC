@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
-    Optional<Category> findByDescription1(String description);   //JPA arka planda Category sınıfının category1 değişkeni ile bu metotdaki description1'i eşler
+    Optional<Category> findByDescription1(String description);   //Sprind Data JPA, metota verilen isimden arka planda sql isteği oıluşturur.(description1: kolon ismi, find:select)
 }
