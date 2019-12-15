@@ -26,6 +26,7 @@ nbdist/
 
 ### Build Results ###
 target/
+pet-clinic-data/target
 bin/
 *.log
 
