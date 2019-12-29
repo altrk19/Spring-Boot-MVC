@@ -11,4 +11,9 @@ public interface CustomerMapper {
     CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
     CustomerDTO customerToCustomerDTO(Customer customer);
+
+    Customer customerDtoToCustomer(CustomerDTO customerDTO);
 }
+
+//Client'a response döndüğümüz obje'de resourceUrl var. Bu field DTO objesine ait özel olarak tanımlanmıştır.
+// Db'ye kaydettigimiz DAO objesinde yoktur.
