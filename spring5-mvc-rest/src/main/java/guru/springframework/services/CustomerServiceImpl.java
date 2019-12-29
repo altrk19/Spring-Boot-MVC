@@ -4,6 +4,7 @@ import guru.springframework.api.v1.mapper.CustomerMapper;
 import guru.springframework.api.v1.model.CustomerDTO;
 import guru.springframework.controller.CustomerController;
 import guru.springframework.domain.Customer;
+import guru.springframework.exceptions.CustomResourceNotFoundException;
 import guru.springframework.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -43,8 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
                     customerDTO.setCustomerUrl(getCustomerUrl(id));
                     return customerDTO;
                 })
-                .orElseThrow(RuntimeException::new);
-        //todo implement better exception handling
+                .orElseThrow(CustomResourceNotFoundException::new);
     }
 
     @Override
@@ -73,8 +73,7 @@ public class CustomerServiceImpl implements CustomerService {
             CustomerDTO returnDto = customerMapper.customerToCustomerDTO(customerRepository.save(customer));
             returnDto.setCustomerUrl(getCustomerUrl(id));
             return returnDto;
-        }).orElseThrow(RuntimeException::new);
-        //todo implement better exception handling;
+        }).orElseThrow(CustomResourceNotFoundException::new);
     }
 
     @Override

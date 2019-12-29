@@ -1,6 +1,8 @@
 package guru.springframework.controller;
 
 import guru.springframework.api.v1.model.CustomerDTO;
+import guru.springframework.controller.advice.ExceptionHandlingController;
+import guru.springframework.exceptions.CustomResourceNotFoundException;
 import guru.springframework.services.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +24,8 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-class CustomerControllerTest extends AbstractRestControllerTest{
+
+class CustomerControllerTest extends AbstractRestControllerTest {
     @Mock
     CustomerService customerService;
 
@@ -35,7 +38,9 @@ class CustomerControllerTest extends AbstractRestControllerTest{
     void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        mockMvc = MockMvcBuilders.standaloneSetup(customerController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(customerController)
+                .setControllerAdvice(new ExceptionHandlingController())
+                .build();
     }
 
 
@@ -46,16 +51,16 @@ class CustomerControllerTest extends AbstractRestControllerTest{
         CustomerDTO customer1 = new CustomerDTO();
         customer1.setFirstname("Michale");
         customer1.setLastname("Weston");
-        customer1.setCustomerUrl("/api/v1/customer/1");
+        customer1.setCustomerUrl("/api/v1/customers/1");
 
         CustomerDTO customer2 = new CustomerDTO();
         customer2.setFirstname("Sam");
         customer2.setLastname("Axe");
-        customer2.setCustomerUrl("/api/v1/customer/2");
+        customer2.setCustomerUrl("/api/v1/customers/2");
 
         when(customerService.getAllCustomers()).thenReturn(Arrays.asList(customer1, customer2));
 
-        mockMvc.perform(get("/api/v1/customers/")
+        mockMvc.perform(get(CustomerController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.customers", hasSize(2)));
@@ -68,12 +73,12 @@ class CustomerControllerTest extends AbstractRestControllerTest{
         CustomerDTO customer1 = new CustomerDTO();
         customer1.setFirstname("Michale");
         customer1.setLastname("Weston");
-        customer1.setCustomerUrl("/api/v1/customer/1");
+        customer1.setCustomerUrl("/api/v1/customers/1");
 
         when(customerService.getCustomerById(anyLong())).thenReturn(customer1);
 
         //when
-        mockMvc.perform(get("/api/v1/customers/1")
+        mockMvc.perform(get(CustomerController.BASE_URL + "/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo("Michale")));
@@ -94,7 +99,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
         when(customerService.createNewCustomer(customer)).thenReturn(returnDTO);
 
         //when/then
-        mockMvc.perform(post("/api/v1/customers/")
+        mockMvc.perform(post(CustomerController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isCreated())
@@ -117,7 +122,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
         when(customerService.saveCustomerByDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
 
         //when/then
-        mockMvc.perform(put("/api/v1/customers/1")
+        mockMvc.perform(put(CustomerController.BASE_URL + "/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isOk())
@@ -140,7 +145,7 @@ class CustomerControllerTest extends AbstractRestControllerTest{
 
         when(customerService.patchCustomer(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
 
-        mockMvc.perform(patch("/api/v1/customers/1")
+        mockMvc.perform(patch(CustomerController.BASE_URL + "/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isOk())
@@ -152,10 +157,20 @@ class CustomerControllerTest extends AbstractRestControllerTest{
     @Test
     public void testDeleteCustomer() throws Exception {
 
-        mockMvc.perform(delete("/api/v1/customers/1")
+        mockMvc.perform(delete(CustomerController.BASE_URL + "/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         verify(customerService).deleteCustomerById(anyLong());
+    }
+
+    @Test
+    public void testNotFoundException() throws Exception {
+
+        when(customerService.getCustomerById(anyLong())).thenThrow(CustomResourceNotFoundException.class);
+
+        mockMvc.perform(get(CustomerController.BASE_URL + "/222")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }
