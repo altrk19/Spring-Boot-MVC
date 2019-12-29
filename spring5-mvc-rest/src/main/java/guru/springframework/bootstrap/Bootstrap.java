@@ -1,7 +1,9 @@
 package guru.springframework.bootstrap;
 
 import guru.springframework.domain.Category;
+import guru.springframework.domain.Customer;
 import guru.springframework.repositories.CategoryRepository;
+import guru.springframework.repositories.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -10,14 +12,22 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class Bootstrap implements CommandLineRunner {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRespository;
+    private final CustomerRepository customerRepository;
 
-    public Bootstrap(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public Bootstrap(CategoryRepository categoryRespository, CustomerRepository customerRepository) {
+        this.categoryRespository = categoryRespository;
+        this.customerRepository = customerRepository;
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
+
+        loadCategories();
+        loadCustomers();
+    }
+
+    private void loadCategories() {
         Category fruits = new Category();
         fruits.setName("Fruits");
 
@@ -33,12 +43,30 @@ public class Bootstrap implements CommandLineRunner {
         Category nuts = new Category();
         nuts.setName("Nuts");
 
-        categoryRepository.save(fruits);
-        categoryRepository.save(dried);
-        categoryRepository.save(fresh);
-        categoryRepository.save(exotic);
-        categoryRepository.save(nuts);
+        categoryRespository.save(fruits);
+        categoryRespository.save(dried);
+        categoryRespository.save(fresh);
+        categoryRespository.save(exotic);
+        categoryRespository.save(nuts);
 
-        log.debug("Data Loaded = " + categoryRepository.count());
+        log.debug("Categories Loaded: " + categoryRespository.count());
+    }
+
+    private void loadCustomers() {
+        //given
+        Customer customer1 = new Customer();
+        customer1.setId(1L);
+        customer1.setFirstname("Michale");
+        customer1.setLastname("Weston");
+        customerRepository.save(customer1);
+
+        Customer customer2 = new Customer();
+        customer2.setId(2L);
+        customer2.setFirstname("Sam");
+        customer2.setLastname("Axe");
+
+        customerRepository.save(customer2);
+
+        log.debug("Customers Loaded: " + customerRepository.count());
     }
 }
