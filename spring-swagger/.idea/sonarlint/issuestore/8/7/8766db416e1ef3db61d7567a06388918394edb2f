@@ -1,0 +1,4 @@
+
+esquid:UselessImportCheck"<Remove this unused import 'io.swagger.annotations.ApiModel'.(ÕŸÎþüÿÿÿÿ
+rsquid:UselessImportCheck"IRemove this unused import 'com.fasterxml.jackson.annotation.JsonCreator'.(Ã¸‚×ùÿÿÿÿ
+}squid:UselessImportCheck"TRemove this unnecessary import: same package classes are always implicitly imported.(ƒ¶Á˜ûÿÿÿÿ
